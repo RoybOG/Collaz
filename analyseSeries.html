@@ -88,16 +88,21 @@
 let delay = 100;
 
 function addChunk() {
-  for (let i = 0; i < chunkSize && userNumber >= 1; i++) {
-    addRow(userNumber);
+   
+   for (let i = 0; i < chunkSize && userNumber >= 1; i++) {
+    
 
     if (userNumber === 1) {
       return;
     }
 
-    userNumber = userNumber % 2 === 0
-      ? userNumber / 2
-      : userNumber * 3 + 1;
+    if (userNumber % 2 ==0 ){
+        userNumber = userNumber / 2
+    }else{
+        addRow(userNumber);
+        userNumber =  userNumber * 3 + 1;
+        addRow(userNumber);
+    }
   }
 
   setTimeout(addChunk, delay);
