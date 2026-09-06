@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Collatz Sequence</title>
+</head>
+<style>
+    table {
+       margin-inline: auto;
+         
+    }
+    table, tr, th,td {
+        border: none;
+        text-align: right;
+    }
+    th{
+        padding-inline: 10em;
+    }
+    td{
+        padding-block:1.5em;
+    }
+    @media print {
+        form {
+            display:none;
+        }
+        tbody#results tr:nth-child(20n) {
+        /* break-after: page;
+        
+        page-break-after: always; */
+        /* Fallback for older browsers: */
+        }
+        @page {
+        size: A4;
+        margin: 2cm;
+        
+        /* Puts 'Page X' at the bottom right corner of every page */
+        @bottom-right {
+            content: "Page " counter(page);
+        }
+    } 
+
+    }
+</style>
+<body>
+  <form id="collatz-form">
+    <label for="number">Number:</label>
+    <input id="number" type="text" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Bin</th>
+      </tr>
+    </thead>
+    <tbody id="results"></tbody>
+  </table>
+
+  <script>
+    document.getElementById("collatz-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      let userNumber = Number(document.getElementById("number").value);
+      let results = document.getElementById("results");
+      
+      results.innerHTML = "";
+      let addRow = (num)=> {
+        let row = results.insertRow();
+        row.insertCell().textContent = num;
+        row.insertCell().textContent = num.toString(2);
+      }
+
+      if (!Number.isInteger(userNumber) || userNumber < 1) {
+        return;
+      }
+
+ /*
+      do {
+        let row = results.insertRow();
+        row.insertCell().textContent = userNumber;
+        row.insertCell().textContent = userNumber.toString(2);
+
+        userNumber = userNumber % 2 === 0 ? userNumber / 2 : ( userNumber * 3 + 1);
+      } while (userNumber >= 1)*/
+       let chunkSize = 10;
+let delay = 100;
+
+function addChunk() {
+  for (let i = 0; i < chunkSize && userNumber >= 1; i++) {
+    addRow(userNumber);
+
+    if (userNumber === 1) {
+      return;
+    }
+
+    userNumber = userNumber % 2 === 0
+      ? userNumber / 2
+      : userNumber * 3 + 1;
+  }
+
+  setTimeout(addChunk, delay);
+}
+
+    addChunk(); 
+    });
+  </script>
+</body>
+</html>
