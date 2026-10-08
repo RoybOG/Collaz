@@ -1,0 +1,1 @@
+npx -p @mermaid-js/mermaid-cli mmdc --configFile "D:\python\PycharmProjects\math\Collatz\mermaid_graphs\memraid.config.json" -i "D:\python\PycharmProjects\math\Collatz\mermaid_graphs\100-500(MapFromOne).mmd" -o "D:\python\PycharmProjects\math\Collatz\mermaid_graphs\100-500(MapFromOne).svg"

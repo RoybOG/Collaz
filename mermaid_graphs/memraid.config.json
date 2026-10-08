@@ -1,0 +1,6 @@
+{
+  "maxTextSize": 150000,
+  "maxGraphSize": 50000,
+  "maxEdges": 50000,
+  "secure": false
+}
